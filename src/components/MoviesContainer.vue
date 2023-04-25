@@ -1,23 +1,19 @@
 <script setup>
+import SearchMovies from "./SearchMovies.vue";
 import MoviesList from "./MoviesList.vue";
-import { onMounted, reactive } from "vue";
 
-const omdbKey = import.meta.env.VITE_OMDB_API_KEY;
+import { onMounted } from "vue";
+import {useMoviesStore} from "../store/useMoviesStore";
+const moviesStore = useMoviesStore();
 
-let movies = reactive([]);
-
-onMounted(() => {
-  fetch(`http://www.omdbapi.com/?s=a&page=1&apikey=${omdbKey}&`).then(
-    async (res) => {
-      const data = await res.json();
-      movies = data.Response == "True" ? data.Search : [];
-    }
-  );
-});
+// onMounted(() => {
+//   moviesStore.searchMovies("avatar");
+// });
 </script>
 
 <template>
   <span>
-    <MoviesList  />
+    <SearchMovies @on-search="moviesStore.searchMovies"/>
+    <MoviesList />
   </span>
 </template>

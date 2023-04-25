@@ -1,27 +1,23 @@
 <script setup>
-defineProps({
-  allMovies: {
-    type:Array,
-    default:[]
-  }
-})
+import { useMoviesStore } from "../store/useMoviesStore";
+const moviesStore = useMoviesStore();
 </script>
 
 <template>
-  <table class="table-auto">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="(movie,i) in allMovies" :key="i">
-      <td>{{movie.Title}}</td>
-      <td>{{movie.Year}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(movie, i) in moviesStore.movies" :key="i">
+        <td>{{ movie.Title }}</td>
+        <td>{{ movie.Year }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style scoped>
