@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 
 const emit = defineEmits(['onSearch'])
 const searchOptions=reactive({
-  title:" ",
+  title:"",
   year:""
 })
 </script>
